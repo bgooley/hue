@@ -32,7 +32,6 @@ from indexer import conf, utils
 
 
 LOG = logging.getLogger(__name__)
-MAX_UPLOAD_SIZE = 100 * 1024 * 1024 # 100 MB
 ALLOWED_FIELD_ATTRIBUTES = set(['name', 'type', 'indexed', 'stored'])
 FLAGS = [('I', 'indexed'), ('T', 'tokenized'), ('S', 'stored')]
 
@@ -230,7 +229,7 @@ class CollectionManagerController(object):
 
     if indexing_strategy == 'upload':
       stats = fs.stats(path)
-      if stats.size > MAX_UPLOAD_SIZE:
+      if stats.size > conf.MAX_UPLOAD_SIZE.get():
         raise PopupException(_('File size is too large to handle!'))
       else:
         # Get fields for filtering

@@ -84,3 +84,9 @@ SOLR_ZK_ENSEMBLE  = Config(
   help=_t("Zookeeper ensemble."),
   type=str,
   dynamic_default=zkensemble)
+
+MAX_UPLOAD_SIZE = Config(
+  key="max_upload_size",
+  help=_t("Maximum size for uploaded files in bytes  (defaults to 100MB)"),
+  type=int,
+  default=100 * 1024 * 1024) # 100 MB
